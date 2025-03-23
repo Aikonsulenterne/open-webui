@@ -13,9 +13,10 @@ services:
       context: .
       args:
         OLLAMA_BASE_URL: '/ollama'
+        NODE_OPTIONS: --max-old-space-size=4096
       dockerfile: Dockerfile
-    image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
-    container_name: open-webui
+    image: ghcr.io/aikonsulenterne/open-webui:brinckmann-branding
+    container_name: open-webui-brinckmann-branding
     volumes:
       - open-webui:/app/backend/data
     depends_on:
@@ -23,6 +24,7 @@ services:
     ports:
       - ${OPEN_WEBUI_PORT-3000}:8080
     environment:
+      - NODE_OPTIONS=--max-old-space-size=4096
       - 'OLLAMA_BASE_URL=http://ollama:11434'
       - 'WEBUI_SECRET_KEY='
     extra_hosts:

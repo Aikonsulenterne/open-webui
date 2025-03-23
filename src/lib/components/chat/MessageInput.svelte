@@ -428,7 +428,7 @@
 												<span class="relative inline-flex rounded-full size-2 bg-blue-500" />
 											</span>
 										</div>
-										<div class=" translate-y-[0.5px]">{$i18n.t('Search the internet')}</div>
+										<div class=" translate-y-[0.5px]">{$i18n.t('Søg på internettet')}</div>
 									</div>
 								</div>
 							{/if}
