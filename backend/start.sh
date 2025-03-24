@@ -3,6 +3,13 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd "$SCRIPT_DIR" || exit
 
+# Azure mount workaround: Symlink /mnt/data → /app/backend/data
+if [ -d "/mnt/data" ]; then
+  echo "[INFO] Azure mount detected. Linking /mnt/data → /app/backend/data"
+  rm -rf "$SCRIPT_DIR/data"
+  ln -s /mnt/data "$SCRIPT_DIR/data"
+fi
+
 # Add conditional Playwright browser installation
 if [[ "${RAG_WEB_LOADER_ENGINE,,}" == "playwright" ]]; then
     if [[ -z "${PLAYWRIGHT_WS_URI}" ]]; then
